@@ -1,3 +1,15 @@
+node_modules/
+bower_components/
+dist
+.tmp
+.project
+.pydevproject
+.settings/
+.venv
+.env
+.tern-project
+*~
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
