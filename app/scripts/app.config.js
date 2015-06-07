@@ -7,14 +7,11 @@
       .config(configure);
 
     /* @ngInject */
-    function configure($authProvider, toastr){
-      // defaults for the toast popups
-      toastr.options.timeOut = 4000;
-      toastr.options.positionClass = 'toast-bottom-right';
-
+    function configure($authProvider){
       // social auth
       $authProvider.google({
-        clientId: ''
+        clientId: '',
+        redirectUri: ''
       });
     }
 })();

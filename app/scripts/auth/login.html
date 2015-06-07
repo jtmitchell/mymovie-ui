@@ -1,3 +1,10 @@
+<h2>Login</h2>
+
 <div data-ng-controller="LoginController as login">
-  <button ng-click="login.authenticate('google')">Sign in with Google</button>
+  <p>
+    <a class="google-signin" ng-click="login.authenticate('google')">
+      <i class="fa fa-google-plus"></i>
+      <span>Sign in with Google</span>
+    </a>
+  </p>
 </div>

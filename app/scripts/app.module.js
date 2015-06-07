@@ -4,8 +4,8 @@
 
     angular
       .module('app', [
-        'ngRoute',
-        'toastr',
+        'ui.router',
+        'restangular',
         'satellizer'
       ]);
 })();

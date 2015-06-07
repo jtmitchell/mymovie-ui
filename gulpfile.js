@@ -109,6 +109,7 @@ gulp.task('html', function () {
   return gulp.src('app/**/*.html')
     .pipe(assets)
     // Concatenate and minify JavaScript
+    .pipe($.if('*.js', $.ngAnnotate()))
     .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
     // Remove any unused CSS
     // Note: if not using the Style Guide, you can delete it from

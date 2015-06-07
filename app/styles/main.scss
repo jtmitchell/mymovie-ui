@@ -387,3 +387,27 @@ main {
   src: url(/fonts/RobotoCondensed-BoldItalic.eot);
   src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url(/fonts/RobotoCondensed-BoldItalic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-BoldItalic.woff) format('woff');
 }
+
+.fa-google-plus {
+  color: #dd4b39;
+}
+.google-signin {
+  color: #737373;
+  font-size: 14pt;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2px;
+  background-color: #f9f9f9;
+  border: 1px solid #979797;
+  cursor: pointer;
+}
+
+.google-signin .fa-google-plus {
+  padding: 5px 5px 5px 10px;
+}
+
+.google-signin span {
+  border-left: 1px solid #979797;
+  padding-left: 1em;
+  padding-right: 1em;
+}

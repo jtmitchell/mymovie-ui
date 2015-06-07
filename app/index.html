@@ -43,7 +43,7 @@
   </head>
   <body data-ng-app="app" id="app">
 
-    <div data-ng-controller="MyMovieController as controller">
+    <div data-ng-controller="AppController as ctrl">
 
       <header class="app-bar promote-layer">
         <div class="app-bar-container">
@@ -59,16 +59,17 @@
 
       <nav class="navdrawer-container promote-layer">
         <h4>Navigation</h4>
+        <ul>
+          <li data-ng-class="{active: $state.includes('home')}"><a ui-sref="home">Home</a></li>
+          <li data-ng-class="{active: $state.includes('search')}"><a ui-sref="search">Search</a></li>
+          <li data-ng-class="{active: $state.includes('login')}"><a ui-sref="login">Login</a></li>
+        </ul>
       </nav>
 
-      <div class="clear"></div>
-
       <main>
-
-    		<section class="container">
-          <div data-ng-view id="content"></div>
-    		</section>
-
+        <div data-ui-view id="content" class="container">
+          <h2>Home</h2>
+        </div>
       </main>
 
     </div>
@@ -86,6 +87,8 @@
     <!-- build:js scripts/app.min.js -->
     <script src="scripts/app.module.js"></script>
     <script src="scripts/app.config.js"></script>
+    <script src="scripts/app.states.js"></script>
+    <script src="scripts/app.controller.js"></script>
     <script src="scripts/auth/login.controller.js"></script>
     <!-- endbuild -->
 
