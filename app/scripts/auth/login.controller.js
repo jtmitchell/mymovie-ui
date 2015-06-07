@@ -12,5 +12,5 @@
       vm.authenticate = function(provider) {
         $auth.authenticate(provider);
       };
-    };
+    }
 })();

@@ -115,8 +115,7 @@ gulp.task('html', function () {
     //       the next line to only include styles your project uses.
     .pipe($.if('*.css', $.uncss({
       html: [
-        'app/index.html',
-        'app/styleguide.html'
+        'app/index.html'
       ],
       // CSS Selectors for UnCSS to ignore
       ignore: [
@@ -173,9 +172,18 @@ gulp.task('serve:dist', ['default'], function () {
   });
 });
 
+// Copy bower files into the project app directory
+gulp.task('bower-files', function(){
+  return gulp.src([
+    'bower_components/**/*min.js',
+    'bower_components/**/*.css',
+  ])
+  .pipe(gulp.dest('app/vendor'))
+});
+
 // Build production files, the default task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
+  runSequence('bower-files', 'styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights

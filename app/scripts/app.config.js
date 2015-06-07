@@ -16,5 +16,5 @@
       $authProvider.google({
         clientId: ''
       });
-    };
+    }
 })();
