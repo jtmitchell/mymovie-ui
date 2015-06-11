@@ -46,6 +46,11 @@ body.open {
 }
 
 .app-bar-container {
+  background-image: url('/images/filmstrip.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:cover;
+  text-shadow: 2px 2px 2px grey;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -57,6 +62,14 @@ body.open {
           flex-direction: row;
   margin: 0 auto;
 }
+
+@media (min-resolution: 2dppx),
+(-webkit-min-device-pixel-ratio: 2) {
+  .app-bar-container {
+    background-image: url('/images/filmstrip@2x.jpg');
+  }
+}
+
 
 .app-bar.open,
 .app-bar.open ~ main {
