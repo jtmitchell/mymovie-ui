@@ -8,23 +8,24 @@
     <link rel="me" href="https://twitter.com/saywibble">
     <meta name="description" content="Tracking release dates for your favourite movies">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico?v=2" />
 
     <!-- Add to homescreen -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/manifest.json">
 
     <!-- Fallback to homescreen for Chrome <39 on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="MyMovie">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <link rel="icon" sizes="192x192" href="/images/touch/chrome-touch-icon-192x192.png">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="MyMovie">
-    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="/images/touch/apple-touch-icon.png">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileImage" content="/images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
     <meta name="theme-color" content="#3372DF">
@@ -35,11 +36,11 @@
     -->
 
     <!-- Page styles -->
-    <!-- build:css vendor/styles.css -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/jquery-spinner/dist/bootstrap-spinner.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- build:css styles/styles.css -->
+    <link rel="stylesheet" href="styles/vendor.css">
+    <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body data-ng-app="app" id="app">
 
@@ -74,22 +75,8 @@
 
     </div>
 
-    <!-- build:js vendor/scripts.min.js -->
-    <script src="vendor/underscore/underscore-min.js"></script>
-    <script src="vendor/jquery/dist/jquery.min.js"></script>
-    <script src="vendor/angular/angular.min.js"></script>
-    <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="vendor/restangular/dist/restangular.min.js"></script>
-    <script src="vendor/satellizer/satellizer.min.js"></script>
-    <script src="vendor/jquery-spinner/dist/jquery.spinner.min.js"></script>
-    <script src="scripts/wsk.js"></script>
-    <!-- endbuild -->
-    <!-- build:js scripts/app.min.js -->
-    <script src="scripts/app.module.js"></script>
-    <script src="scripts/app.config.js"></script>
-    <script src="scripts/app.states.js"></script>
-    <script src="scripts/app.controller.js"></script>
-    <script src="scripts/auth/login.controller.js"></script>
+    <!-- build:js scripts/bundle.min.js -->
+    <script src="/scripts/bundle.js"></script>
     <!-- endbuild -->
 
     <script>

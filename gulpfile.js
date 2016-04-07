@@ -17,6 +17,9 @@
  *
  */
 
+ /* jshint -W097 */
+ /* jshint -W117 */
+
 'use strict';
 
 // Include Gulp & tools we'll use
@@ -27,6 +30,10 @@ var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var pagespeed = require('psi');
 var reload = browserSync.reload;
+
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var parcelify = require('parcelify');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -42,7 +49,7 @@ var AUTOPREFIXER_BROWSERS = [
 
 // Lint JavaScript
 gulp.task('jshint', function () {
-  return gulp.src('app/scripts/**/*.js')
+  return gulp.src(['app/scripts/**/*.js', '!app/scripts/bundle.js'])
     .pipe(reload({stream: true, once: true}))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
@@ -142,11 +149,11 @@ gulp.task('html', function () {
 gulp.task('clean', del.bind(null, ['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
-gulp.task('serve', ['styles'], function () {
+gulp.task('serve', ['styles', 'browserify'], function () {
   browserSync({
     notify: false,
     // Customize the BrowserSync console logging prefix
-    logPrefix: 'WSK',
+    logPrefix: 'MOVIE',
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
@@ -156,7 +163,7 @@ gulp.task('serve', ['styles'], function () {
 
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-  gulp.watch(['app/scripts/**/*.js'], ['jshint']);
+  gulp.watch(['app/scripts/**/*.js', '!app/scripts/bundle.js'], ['jshint', 'browserify', reload]);
   gulp.watch(['app/images/**/*'], reload);
 });
 
@@ -164,7 +171,7 @@ gulp.task('serve', ['styles'], function () {
 gulp.task('serve:dist', ['default'], function () {
   browserSync({
     notify: false,
-    logPrefix: 'WSK',
+    logPrefix: 'MOVIE',
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
@@ -173,18 +180,20 @@ gulp.task('serve:dist', ['default'], function () {
   });
 });
 
-// Copy bower files into the project app directory
-gulp.task('bower-files', function(){
-  return gulp.src([
-    'bower_components/**/*min.js',
-    'bower_components/**/*.css',
-  ])
-  .pipe(gulp.dest('app/vendor'))
+// Run browserify to collect the JS dependancies
+// Parcelify collects the CSS
+gulp.task('browserify', function(){
+  var jsBundle = browserify('app/scripts/entry.js');
+  var cssBundle = parcelify(jsBundle, { bundles: { style: '.tmp/styles/vendor.css'}});
+  return jsBundle
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('.tmp/scripts/'));
 });
 
 // Build production files, the default task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('bower-files', 'styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
+  runSequence('styles', ['jshint', 'browserify', 'html', 'images', 'fonts', 'copy'], cb);
 });
 
 // Run PageSpeed Insights
