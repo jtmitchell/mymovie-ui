@@ -110,7 +110,7 @@ gulp.task('styles', function () {
 });
 
 // Scan your HTML for assets & optimize them
-gulp.task('html', function () {
+gulp.task('html', ['browserify'], function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/**/*.html')
