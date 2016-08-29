@@ -1,0 +1,9 @@
+<input ng-model="$ctrl.searchTerm" placeholder="Search for..."></input>
+<button ng-click="$ctrl.search()">Search</button>
+
+<ul>
+    <li ng-repeat="movie in $ctrl.results.data">
+        <img ng-src="{{movie.Poster}}" height="200px"/>
+        {{movie.Title}} ({{movie.Year}})
+    </li>
+</ul>
