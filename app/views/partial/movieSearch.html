@@ -1,9 +1,14 @@
 <input ng-model="$ctrl.searchTerm" placeholder="Search for..."></input>
 <button ng-click="$ctrl.search()">Search</button>
 
-<ul>
-    <li ng-repeat="movie in $ctrl.results.data">
-        <img ng-src="{{movie.Poster}}" height="200px"/>
-        {{movie.Title}} ({{movie.Year}})
-    </li>
-</ul>
+<table ng-show="$ctrl.results.data.length > 0">
+    <tr>
+        <th>Title</th>
+        <th>Release</th>
+        <th>Poster</th>
+    </tr>
+    <tr ng-repeat="movie in $ctrl.results.data">
+        <td align="center" ng-bind="movie.Title"></td>
+        <td align="center" ng-bind="movie.Year"></td>
+        <td align="center"><img ng-src="{{movie.Poster}}" height="200px"/></td>
+</div>
