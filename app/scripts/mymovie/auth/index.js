@@ -1,1 +1,1 @@
-module.exports = require('./login.controller').name;
+module.exports = require('./auth.module').name;
