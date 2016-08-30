@@ -2,6 +2,8 @@
 var angular = require('angular');
 require('angular-ui-router');
 
+// TODO need to add a JWT http interceptor thing
+
 var config = require('./app.config');
 var routes = require('./app.states');
 var auth = require('./auth');
