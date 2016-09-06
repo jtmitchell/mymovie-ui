@@ -6,13 +6,13 @@
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:3000",
-            "sourceMaps": true,
             "webRoot": "${workspaceRoot}",
-            "runtimeArgs": [
-                "--new-window",
-                "--user-data-dir=/tmp/chrome-debug",
-                "--remote-debugging-port=9222"
-            ]
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "*": "${webRoot}/*"
+            },
+            "userDataDir": "/tmp/chrome-debug",
+            // "diagnosticLogging": true
         },
         {
             "name": "Attach to Chrome, with sourcemaps",
