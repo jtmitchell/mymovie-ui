@@ -33,6 +33,7 @@ var reload = browserSync.reload;
 
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var exorcist = require('exorcist');
 var parcelify = require('parcelify');
 
 var AUTOPREFIXER_BROWSERS = [
@@ -183,10 +184,17 @@ gulp.task('serve:dist', ['default'], function () {
 // Run browserify to collect the JS dependancies
 // Parcelify collects the CSS
 gulp.task('browserify', function(){
-  var jsBundle = browserify('app/scripts/entry.js');
-  var cssBundle = parcelify(jsBundle, { bundles: { style: '.tmp/styles/vendor.css'}});
+  var jsBundle = browserify('app/scripts/entry.js', {
+    debug: true
+  });
+  parcelify(jsBundle, {
+    bundles: {
+      style: '.tmp/styles/vendor.css'
+    }
+  });
   return jsBundle
     .bundle()
+    .pipe(exorcist('.tmp/scripts/bundle.js.map'))
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('.tmp/scripts/'));
 });
@@ -200,7 +208,7 @@ gulp.task('default', ['clean'], function (cb) {
 gulp.task('pagespeed', function (cb) {
   // Update the below URL to the public URL of your site
   pagespeed.output('example.com', {
-    strategy: 'mobile',
+    strategy: 'mobile'
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
     // key: 'YOUR_API_KEY'
